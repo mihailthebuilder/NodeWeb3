@@ -14,6 +14,6 @@ const provider = new ethers.providers.JsonRpcProvider(url+infuraKey);
 
 const signer = provider.getSigner();
 
-address = "0x04d5Bc320FFa275E77BA576B608798418e83B360";
+inputAddress = "0x04d5Bc320FFa275E77BA576B608798418e83B360";
 
-showBalance(provider,address);
+showBalance(provider,inputAddress);
