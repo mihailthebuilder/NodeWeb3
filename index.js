@@ -65,6 +65,15 @@ async function showContractBalance(contract) {
     console.log("Contract balance is " + ethers.utils.formatEther(balance));
 }
 
+async function deposit(contract) {
+
+    const signedContract = await contract.connect(signer);
+
+    await signedContract.deposit(5000);
+
+    //showContractBalance(signedContract);
+}
+
 const url = "https://rinkeby.infura.io/v3/";
 const infuraKey = process.env.INFURA_KEY;
 
@@ -79,3 +88,5 @@ showBalance(provider,inputAddress);
 const contract = getContract(provider);
 
 showContractBalance(contract);
+
+deposit(contract);
