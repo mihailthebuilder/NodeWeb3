@@ -7,7 +7,7 @@ const InfuraKey = process.env.INFURA_KEY;
 const PrivateKey = process.env.PRIVATE_KEY;
 const MyContract = require("./contract.json");
 
-inputAddress = "0x04d5Bc320FFa275E77BA576B608798418e83B360";
+const address = "0x04d5Bc320FFa275E77BA576B608798418e83B360";
 
 //Easy way (Web3 + @truffle/hdwallet-provider)
 const init3 = async () => {
@@ -22,9 +22,16 @@ const init3 = async () => {
 
     console.log(balance);
 
+    const receipt = await myContract.methods.deposit(500).send({from: address});
+    const newBalance = await myContract.methods.getBalance().call();
+
+    console.log(newBalance);
+    console.log(receipt.transactionHash);
+
+    process.exit();
     /*
     console.log(`Old data value: ${await myContract.methods.data().call()}`);
-    const receipt = await myContract.methods.setData(3).send({ from: address });
+    const receipt = await myContract.methods.setDcall()ata(3).send({ from: address });
     console.log(`Transaction hash: ${receipt.transactionHash}`);
     console.log(`New data value: ${await myContract.methods.data().call()}`);
     */
