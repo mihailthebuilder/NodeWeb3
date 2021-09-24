@@ -79,7 +79,7 @@ const infuraKey = process.env.INFURA_KEY;
 
 const provider = new ethers.providers.JsonRpcProvider(url+infuraKey);
 
-const signer = provider.getSigner();
+//const signer = provider.getSigner();
 
 inputAddress = "0x04d5Bc320FFa275E77BA576B608798418e83B360";
 
@@ -87,6 +87,14 @@ showBalance(provider,inputAddress);
 
 const contract = getContract(provider);
 
+
+async function getBalance(provider,signer) {
+    console.log(signer.address);
+    balance = await provider.send('relay_getBalance', [signer.address])
+    console.log(`Your current ITX balance is ${balance}`)
+}
+
 showContractBalance(contract);
 
-deposit(contract);
+const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
+getBalance(provider,signer)
